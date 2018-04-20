@@ -52,6 +52,13 @@ font-size: 120%;
   width: 50%;
   float: right;
 }
+
+.middle-left {
+    width: 50%;
+    float: left;
+    vertical-align: middle;
+}
+
 .grey { color: #bbbbbb; }
 
 .singleimg .middlebelowheader {
@@ -98,7 +105,8 @@ td, th {
 }
 
 .remark-code-line-highlighted {
-    background-color: #e2aac0;
+    /* background-color: #e2aac0; */
+    background-color: #0aaaaa;
 }
 
 .medium .remark-code  {
@@ -125,6 +133,8 @@ td, th {
 .credits {
   font-style: italic;
   font-size: 70%;
+  float: right;
+  float: bottom;
 }
 
 .bunchoflogos img {
