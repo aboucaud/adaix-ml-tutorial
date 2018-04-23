@@ -60,6 +60,9 @@ font-size: 120%;
 }
 
 .grey { color: #bbbbbb; }
+.dark-grey { color: #333131; }
+.red { color: rgb(249, 38, 114); }
+.blue { color: #0368bb; }
 
 .singleimg .middlebelowheader {
   text-align: center;
@@ -70,6 +73,11 @@ font-size: 120%;
   max-height: 600px;
   /*border: 2px solid #ddd;*/
 }
+
+code {
+  border-radius: 10px;
+}
+
 table {
   margin: 0 auto 0.8em;
   border-collapse: collapse;
@@ -106,7 +114,7 @@ td, th {
 
 .remark-code-line-highlighted {
     /* background-color: #e2aac0; */
-    background-color: #0aaaaa;
+    background-color: #0ccfcf8e;
 }
 
 .medium .remark-code  {
