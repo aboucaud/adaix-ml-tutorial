@@ -237,19 +237,42 @@ class: center, middle
 a % of random neurons are .grey[switched off] during training  
 it mimics different architectures being trained at each step 
 
-.center[<img src="img/dropout.png" width="600 px;" />]
+.center[<img src="img/dropout.png" width="600 px">]
 .credits[Hinton +12]
 
 ---
+## Dropout
+
+.left-column[
+```python
+from keras.model import Sequential
+from keras.layers import Conv2D
+
+model = Sequential()
+model.add(Conv2D(1, (3, 3), 
+*                strides=2, 
+                 padding='same', 
+                 input_shape=(5, 5, 1)))
+model.summary()
+```
+]
+
+.right-column[<img src="img/plot_dropout.png" width="300px">]
+
+---
+
 ## Batch normalization
 
+.left-column[
 ```python
 from keras.layers import BatchNormalization
 
-model.add(BatchNormalization())
+model = Sequential()
+model.add(Conv2D(...))
+*model.add(BatchNormalization())
 
 ```
-
+]
 ---
 ## what we did not talk about
 
