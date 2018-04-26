@@ -17,13 +17,13 @@ enormous attention in the media
 
 class: center, middle
 
-<img src="img/news.png", width="800px;">
+<img src="img/news.png", width="800px" / >
 
 ---
 class: center, middle
 <!-- shift in the science community -->
 
-<img src="img/arxiv.png" , width="800px;">
+<img src="img/arxiv.png" , width="800px" / >
 
 
 ---
@@ -237,7 +237,7 @@ class: center, middle
 a % of random neurons are .grey[switched off] during training  
 it mimics different architectures being trained at each step 
 
-.center[<img src="img/dropout.png" width="600 px">]
+.center[<img src="img/dropout.png" width="600 px" />]
 .credits[Hinton +12]
 
 ---
@@ -257,7 +257,7 @@ model.summary()
 ```
 ]
 
-.right-column[<img src="img/plot_dropout.png" width="300px">]
+.right-column[<img src="img/plot_dropout.png" width="300px" />]
 
 ---
 
@@ -305,7 +305,7 @@ get you out of trouble.
   (arXiv, blogs, websites)
 
 .center[
-<img src="img/ssd.png" width="600px">
+<img src="img/ssd.png" width="600px" />
 ]
 
 ---
@@ -317,7 +317,7 @@ get you out of trouble.
   (often the case if algorithm is efficient)
 
 .center[
-<img src="img/ssd_keras.png" width="700px"> 
+<img src="img/ssd_keras.png" width="700px" /> 
 ]
 
 ---
@@ -363,7 +363,7 @@ plt.ylabel('loss')
 ```
 ]
 .right-column[ 
-<img src="img/loss.png">
+<img src="img/loss.png" />
 ]
 
 ---
@@ -411,5 +411,5 @@ stay tuned !
 class: center, middle
 But keep in mind that .red[not everything] is differentiable..
 
-<img src="img/friendship_algorithm.PNG">
+<img src="img/friendship_algorithm.PNG" />
 
