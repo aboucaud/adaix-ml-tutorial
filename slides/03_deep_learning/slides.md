@@ -134,7 +134,9 @@ LeCun => 90's
 
 ## Deep learning stack
 
-
+.center[
+  <img src="img/frameworks.png" width="800px" vspace="30px"/>
+]
 
 ---
 ## Foreword
@@ -180,33 +182,206 @@ name: nns
 
 ---
 
-## Weights
+## Input data
+
+
 
 ---
 
 ## A Neuron
 
-multiple inputs  
-one output
+A neuron is a .green[linear system] with two attributes
+> the weight matrix $\mathbf{W}$  
+> the linear bias $b$
+
+It takes .green[multiple inputs] (from $\mathbf{x}$) and returns .green[a single output]
+> $f(\mathbf{x}) = \mathbf{W}^T \mathbf{x} + b $
+.center[
+  <img src="img/neuron.svg" width="600px" />
+]
 
 ---
 ## Linear layers
 
-array of neurons
-multiple inputs
-multiple outputs
+A linear layer is an .green[array of neurons].
+
+A layer has .green[multiple inputs] (same $\mathbf{x}$ for each neuron) and returns .green[multiple outputs].
+
+.center[
+  <img src="img/linearlayer.svg" width="500px" />
+]
 
 ---
-## Anatomy of a neural net
+## Hidden layers
 
-.center[<img src="img/mlp_annotated.jpeg", width="600px;" />]
+All layers internal to the network (not input or output layer) are considered .green[hidden layers].
+
+.center[<img src="img/ann.jpg" width="500px" />]
+
+.footnote[Wikimedia commons]
 
 ---
 ## Multi-layer perceptron (MLP)
 
-.center[<img src="img/mlp.jpeg", width="600px;" />]
+.center[<img src="img/mlp.jpg" width="600px" vspace="50px" />]
+
+.footnote[[cs231n.github.io](http://cs231n.github.io/)]
 
 ---
+## Multi-layer perceptron (MLP)
+
+
+.left-column[
+```python
+from keras.models import Sequential
+from keras.layers import Dense
+
+# initialize model
+model = Sequential()
+
+# add layers
+model.add(Dense(4, input_dim=3))
+model.add(Dense(4))
+model.add(Dense(1))
+```
+]
+
+.right-column[
+<img src="img/mlp.jpg" width="350px" vspace="30px" />
+]
+
+---
+count: false
+## Multi-layer perceptron (MLP)
+.left-column[
+```python
+from keras.models import Sequential
+from keras.layers import Dense
+
+# initialize model
+model = Sequential()
+
+# add layers
+model.add(Dense(4, input_dim=3))
+model.add(Dense(4))
+model.add(Dense(1))
+```
+]
+.right-column[
+<img src="img/mlp.jpg" width="350px" vspace="30px" />
+]
+
+.hidden[aa]
+.reset-column[]
+.center[
+.big[How many .red[free parameters] has this model ?]
+]
+
+---
+count: false
+## Multi-layer perceptron (MLP)
+.left-column[
+```python
+from keras.models import Sequential
+from keras.layers import Dense
+
+model = Sequential()
+
+model.add(Dense(4, input_dim=3))
+model.add(Dense(4))
+model.add(Dense(1))
+
+# print model structure
+model.summary()
+```
+]
+.right-column[
+<img src="img/mlp.jpg" width="350px" vspace="30px" />
+]
+.reset-column[
+```
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 4)                 16      <= W (3, 4) b (4, 1)
+_________________________________________________________________
+```
+]
+
+---
+count: false
+## Multi-layer perceptron (MLP)
+.left-column[
+```python
+from keras.models import Sequential
+from keras.layers import Dense
+
+model = Sequential()
+
+model.add(Dense(4, input_dim=3))
+model.add(Dense(4))
+model.add(Dense(1))
+
+# print model structure
+model.summary()
+```
+]
+.right-column[
+<img src="img/mlp.jpg" width="350px" vspace="30px" />
+]
+.reset-column[
+```
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 4)                 16
+_________________________________________________________________
+dense_2 (Dense)              (None, 4)                 20      <= W (4, 4) b (4, 1)
+_________________________________________________________________
+```
+]
+
+---
+count: false
+## Multi-layer perceptron (MLP)
+.left-column[
+```python
+from keras.models import Sequential
+from keras.layers import Dense
+
+model = Sequential()
+
+model.add(Dense(4, input_dim=3))
+model.add(Dense(4))
+model.add(Dense(1))
+
+# print model structure
+model.summary()
+```
+]
+.right-column[
+<img src="img/mlp.jpg" width="350px" vspace="30px" />
+]
+.reset-column[
+```
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+dense_1 (Dense)              (None, 4)                 16
+_________________________________________________________________
+dense_2 (Dense)              (None, 4)                 20
+_________________________________________________________________
+dense_3 (Dense)              (None, 1)                 5       <= W (4, 1) b (1, 1)
+=================================================================
+Total params: 41
+Trainable params: 41
+Non-trainable params: 0
+```
+]
+
+---
+exclude: True
+
 ## Multi-layer perceptron (MLP)
 
 ```python
@@ -223,15 +398,15 @@ model.add(Dense(1))
 ```
 
 --
-
+exclude: True
 ```python
 # print model structure
 model.summary()
 ```
 
 --
-
-```
+exclude: True
+```bash
 _________________________________________________________________
 Layer (type)                 Output Shape              Param #
 =================================================================
@@ -244,17 +419,70 @@ dense_3 (Dense)              (None, 1)                 5
 Total params: 41
 Trainable params: 41
 Non-trainable params: 0
-_________________________________________________________________
 ```
 
---- 
-## Non linearities - activation 
+---
 
---- 
+## Adding non linearities
+
+A network with several linear layers remains a .green[linear system].
+
+--
+
+To add non-linearities to the system, .red[activation functions] are introduced. 
+
+.center[<img src="img/artificial_neuron.svg" width="600px" />]
+
+---
+## Adding non linearities
+
+A network with several linear layers remains a .green[linear system].
+
+To add non-linearities to the system, .red[activation functions] are introduced. 
+
+.center[<img src="img/feedforwardnn.gif" width="400px" />]
+
+.footnote[via Alexander Chekunkov]
+
+---
+
 ## Activation functions 
-```python 
 
+.center[<img src="img/activation_functions.svg" width="750px" vspace="50px" />]
+
+---
+
+## Activation layer
+
+There are two different syntaxes whether the activation is seen as a .green[property] of the neuron layer
+
+```python
+model = Sequential()
+model.add(Dense(4, input_dim=3, activation='relu'))
 ```
+
+--
+
+or as an .green[additional layer] to the stack
+
+```python
+from keras.layers import Activation
+
+model = Sequential()
+model.add(Dense(4, input_dim=3))
+model.add(Activation('relu'))
+```
+
+--
+The activation layer .red[does not add] any .red[depth] to the network.
+
+
+---
+## Backpropagation
+
+.center[<img src="img/backpropagation.gif" width="800px" />]
+
+.footnote[via Alexander Chekunkov]
 
 ---
 class: middle, center
@@ -550,4 +778,5 @@ class: center
 class: center, middle
 
 <img src="img/friendship_algorithm.PNG" />
-### But keep in mind that .red[not everything] is differentiable..
+
+.medium[But keep in mind that .red[not everything] is differentiable..]
