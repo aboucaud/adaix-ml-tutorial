@@ -75,8 +75,9 @@ a:visited {
 
 .grey { color: #bbbbbb; }
 .dark-grey { color: #333131; }
-.red { color: rgb(249, 38, 114); }
+.red { color: rgba(194, 13, 79, 0.877); }
 .blue { color: #0368bb; }
+.green { color: #0b794b8e; }
 
 .singleimg .middlebelowheader {
   text-align: center;
