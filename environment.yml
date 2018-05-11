@@ -1,0 +1,11 @@
+name: adaix
+dependencies:
+  - python=3.6
+  - scipy
+  - numpy
+  - matplotlib
+  - scikit-learn>=0.19
+  - pymc
+  - astropy
+  - jupyter
+  - jupyterlab
