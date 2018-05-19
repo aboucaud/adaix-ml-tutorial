@@ -10,11 +10,13 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Ubuntu';
-  font-weight: 300;
+  font-weight: normal;
   margin-top: 0;
 }
-h1 {
-  margin-top: 0.5em;
+
+h1 { font-weight: 300; }
+h1, h2 { 
+  margin-top: 0.5em; 
 }
 h2 {
   font-size: 140%;
@@ -24,24 +26,33 @@ h3 {
   font-size: 120%;
   line-height: 140%;
 }
-h2, h3, h4, h5, h6 {
-  font-weight: normal;
-}
-
-
 li {
   font-size: 120%;
   line-height: 160%;
 }
-
 p {
-font-size: 120%;
+  font-size: 120%;
   line-height: 140%;
 }
+a {
+  color: #1f7ab8cb;
+  text-decoration: none;
+}
+a:hover {
+  color: #b12e17cb;
+  text-decoration: underline;
+}
+a:visited {
+  color: #1f7ab8cb;
+}
+
 
 .footnote {
+    font-size: 80%;
+    font-weight: 300;
     position: absolute;
     bottom: 3em;
+    right: 3em;
 }
 
 .left-column {
@@ -52,17 +63,38 @@ font-size: 120%;
   width: 50%;
   float: right;
 }
+.reset-column {
+  overflow: auto;
+  width: 100%;
+}
+.middle-left {
+    width: 50%;
+    float: left;
+    vertical-align: middle;
+}
+
 .grey { color: #bbbbbb; }
+.dark-grey { color: #333131; }
+.red { color: rgba(194, 13, 79, 0.877); }
+.blue { color: #0368bb; }
+.green { color: #0b794b8e; }
 
 .singleimg .middlebelowheader {
   text-align: center;
 }
 
 .singleimg img {
+  vertical-align: middle;
+  text-align: center;
   max-width: 90%;
   max-height: 600px;
   /*border: 2px solid #ddd;*/
 }
+
+code {
+  border-radius: 10px;
+}
+
 table {
   margin: 0 auto 0.8em;
   border-collapse: collapse;
@@ -73,7 +105,9 @@ td, th {
 }
 
 .bgheader h1 {
-  background-color: rgba(0, 0, 0, 0.9);
+  /* background-color: rgba(0, 0, 0, 0.9); */
+  background-image: url(../03_deep_learning/img/brain3.png);
+  background-position: right;
   opacity: 50%;
   padding: 0.5em;
   color: white;
@@ -98,7 +132,12 @@ td, th {
 }
 
 .remark-code-line-highlighted {
-    background-color: #e2aac0;
+    /* background-color: #e2aac0; */
+    background-color: #0ccfcf8e;
+}
+
+.remark-slide-content {
+  background-position: right;
 }
 
 .medium .remark-code  {
@@ -121,10 +160,21 @@ td, th {
 .small {
   font-size: 90%;
 }
+.medium{
+  font-size: 120%;
+}
+.big {
+  font-size: 150%;
+}
+.huge {
+  font-size: 180%;
+}
 
 .credits {
   font-style: italic;
   font-size: 70%;
+  float: right;
+  float: bottom;
 }
 
 .bunchoflogos img {
@@ -135,8 +185,4 @@ td, th {
 .bunchoflogos p {
   text-align: center;
   width: 750px;
-}
-
-a:visited {
-  color: blue;
 }
