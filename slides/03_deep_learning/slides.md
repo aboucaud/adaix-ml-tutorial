@@ -1,40 +1,23 @@
 class: middle
-background-image: url("img/brain.png")
+background-image: url(img/brain.png)
 <!-- .center[<img src="img/mlp_bkg.svg" width="300 px"/>] -->
 
-# Hands on Neural Networks
+# Hands on .red[deep learning]
 
-.footnote[Alexandre Boucaud  -  [@alxbcd](https://twitter.com/alxbcd)]
+.footnote[Alexandre Boucaud  -  [@alxbcd][twitter]]
+
+[twitter]: https://twitter.com/alxbcd
 ---
 class: middle
-background-image: url(img/brain3.png)
-# Hands on .red[Deep Learning]
-
-.footnote[Alexandre Boucaud  -  [@alxbcd](https://twitter.com/alxbcd)]
-
-???
-<!-- ---
-name: intro
-
-## A trendy subject
-
-enormous attention in the media
-
-[Google trends](https://trends.google.com/trends/explore?date=today%205-y&q=machine%20learning,deep%20learning,neural%20networks) 
-<script type="text/javascript" src="https://ssl.gstatic.com/trends_nrtr/1386_RC02/embed_loader.js"></script>
-<script type="text/javascript"> trends.embed.renderExploreWidget("TIMESERIES", { "comparisonItem": [{ "keyword": "machine learning", "geo": "", "time": "today 5-y" }, { "keyword": "deep learning", "geo": "", "time": "today 5-y" }, { "keyword": "neural networks", "geo": "", "time": "today 5-y" }], "category": 0, "property": "" }, { "exploreQuery": "date=today%205-y&q=machine%20learning,deep%20learning,neural%20networks", "guestPath": "https://trends.google.com:443/trends/embed/" }); </script>
-
-???
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UXd0EDy7aTY?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
-.footnote[[https://youtu.be/UXd0EDy7aTY](https://youtu.be/UXd0EDy7aTY)] -->
+background-image: url(img/brain.png)
+.hidden[aa]
+# Hands on .red[deep learning]
+.small[with [Keras][keras] examples]
+.footnote[Alexandre Boucaud  -  [@alxbcd][twitter]]
 
 ---
 name: intro
-class: center, middle
-
-<img src="img/news.png", width="800px" / >
+background-image: url(img/news.png)
 
 ---
 class: center, middle
@@ -49,7 +32,6 @@ class: center, middle
 ---
 ## A bumpy 60-year history
 
---
 <img src="img/dl-history1.png" , width="800px" / >
 
 --
@@ -57,6 +39,17 @@ class: center, middle
 
 --
 <img src="img/dl-history3.png" , width="800px" / >
+
+---
+## An unprecedented trend 
+
+deep learning computation power .red[doubles every 3.5-month]
+
+.center[
+  <img src="img/dl_compute.png" , width="500px" / >
+]
+
+.footnote[[_AI and Compute_ blog post, Amodei & Hernandez, 16-05-2018](https://blog.openai.com/ai-and-compute/)]
 
 ---
 class: center, middle
@@ -179,7 +172,10 @@ But we are .red[still far]* from "Artificial Intelligence"
 <img src="img/WaveNet.gif" style="width: 500px;" vspace="80px" />
 ]
 
-.footnote[[Tacotron 2](https://google.github.io/tacotron/publications/tacotron2/index.html) & WaveNet - TTS with sound generation - DeepMind (2017)]
+.footnote[[Tacotron 2][tacotron] & [WaveNet][wavenet] - TTS with sound generation - DeepMind (2017)]
+
+[tacotron]: https://google.github.io/tacotron/publications/tacotron2/index.html
+[wavenet]: https://deepmind.com/blog/high-fidelity-speech-synthesis-wavenet/
 
 ---
 class: center, middle
@@ -202,8 +198,6 @@ class: center, middle
 
 # Outline
 
-.medium.grey[Intro]
-
 .medium[[Neural nets](#nns)]
 
 > hidden layers - activation - backpropagation - optimization
@@ -214,16 +208,18 @@ class: center, middle
 
 > kernels - strides - pooling - loss - training
 
---
 
+--
+.medium[[In practice](#practice)]
+
+> step-by-step - monitoring your training
+
+
+--
 .medium[[Common optimizations](#optim)]
 
 > data augmentation - dropout - batch normalisation
 
---
-
-.medium[[In practice](#practice)]
-  
 ---
 ## Foreword
 
@@ -270,7 +266,8 @@ A linear layer is an .green[array of neurons].
 A layer has .green[multiple inputs] (same $\mathbf{x}$ for each neuron) and returns .green[multiple outputs].
 
 .center[
-  <img src="img/linear_layer.jpeg" width="450px" />
+  <!-- <img src="img/linear_layer.jpeg" width="450px" /> -->
+  <img src="img/mlp_bkg.svg" width="450px" vspace="40px"/>
 ]
 
 ---
@@ -499,13 +496,21 @@ To add non-linearities to the system, .red[activation functions] are introduced.
 
 .center[<img src="img/feedforwardnn.gif" width="400px" />]
 
-.footnote[via Alexander Chekunkov]
+.footnote[credit: Alexander Chekunkov]
 
 ---
 
 ## Activation functions 
 
-.center[<img src="img/activation_functions.svg" width="750px" vspace="50px" />]
+.hidden[a]  
+.left-column[.blue[activation function] ]
+.green[its derivative]
+
+
+.center[<img src="img/activation_functions.svg" width="750px" vspace="30px" />]
+
+
+An extended list of activation functions can be found on [wikipédia](https://en.wikipedia.org/wiki/Activation_function).
 
 ---
 
@@ -537,11 +542,14 @@ The activation layer .red[does not add] any .red[depth] to the network.
 ---
 ## Backpropagation
 
-A .green[30-years old] algorithm (Rumelhart et al., 1986)
+A .green[30-years old] algorithm (Rumelhart et al., 1986).
 
-.hidden[a]
+The network is a composition of .green[differentiable] modules.
 
-.center[<img src="img/back.png" width="500px" />]
+The .red[chain rule] can be applied.
+
+
+.center[<img src="img/chain_rule.svg" width="500px" />]
 
 ---
 ## Backpropagation
@@ -553,6 +561,25 @@ A .green[30-years old] algorithm (Rumelhart et al., 1986)
 .center[<img src="img/backpropagation.gif" width="800px" />]
 
 .footnote[credit: Alexander Chekunkov]
+
+---
+## Backpropagate gradients
+
+### Compute activation gradients
+- $\nabla\_{\mathbf{z}^o(\mathbf{x})} l = \mathbf{f(x)} - \mathbf{e}(y)$
+
+--
+
+### Compute layer params gradients 
+- $\nabla\_{\mathbf{W}^o} l = \nabla\_{\mathbf{z}^o(\mathbf{x})} l \cdot \mathbf{h(x)}^\top$
+- $\nabla\_{\mathbf{b}^o} l = \nabla\_{\mathbf{z}^o(\mathbf{x})} l$
+
+--
+
+### Compute prev layer activation gradients
+- $\nabla\_{\mathbf{h(x)}} l = \mathbf{W}^{o\top} \nabla\_{\mathbf{z}^o(\mathbf{x})} l$
+- $\nabla\_{\mathbf{z}^h(\mathbf{x})} l = \nabla\_{\mathbf{h(x)}} l \odot \mathbf{\sigma^\prime(z^h(x))}$
+
 
 ---
 class: middle, center
@@ -615,7 +642,7 @@ model.add(Conv2D(32, (3, 3)))
 
 
 ---
-## No strides + padding
+## No strides, no padding
 
 .left-column[
 ```python
@@ -623,10 +650,11 @@ from keras.models import Sequential
 from keras.layers import Conv2D
 
 model = Sequential()
-model.add(Conv2D(1, (3, 3), 
-                 strides=1, 
-                 padding='same', 
-                 input_shape=(5, 5, 1)))
+model.add(
+    Conv2D(1, (3, 3), 
+           strides=1,        # default
+           padding='valid',  # default
+           input_shape=(7, 7, 1)))
 model.summary()
 ```
 
@@ -643,7 +671,7 @@ _________________________________________
 ```
 ] 
 .right-column[
-<img src="img/convolution_gifs/same_padding_no_strides.gif" width="350px"/>
+<img src="img/convolution_gifs/full_padding_no_strides_transposed.gif" width="350px"/>
 ] 
 
 
@@ -841,107 +869,6 @@ model.fit(X_train, y_train,
 
 ---
 class: center, middle
-name: optim
-# Common optimizations
-
-.medium["avoiding overfitting"]
-
----
-## A big labeled dataset
-
-To train deep neural nets you need .red[a lot of data].
-
-.center[<img src="img/dl_perf.jpg", width="600px"/>]
-
----
-count: false
-## A big labeled dataset
-
-To train deep neural nets you need .red[a lot of data].
-
-Do .red[data augmentation].
-
-.center[<img src="img/data_augment.png", width="600px"/>]
-
----
-count: false
-## A big labeled dataset
-
-To train deep neural nets you need .red[a lot of data].
-
-Do .red[data augmentation].
-
-The training data must be .red[representative] of the test data.
-
-
---
-If you cannot get enough labeled data, use simulations or turn to [transfer learning](https://arxiv.org/abs/1411.1792) techniques.
-
----
-## Dropout
-
-a % of random neurons are .grey[switched off] during training  
-it mimics different architectures being trained at each step 
-
-.center[<img src="img/dropout.png" width="500 px" />]
-.footnote[[Srivastava et al. (2014)](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)]
-
----
-## Dropout
-
-```python
-...
-from keras.layers import Dropout
-
-dropout_rate = 0.25
-
-model = Sequential()
-model.add(Conv2D(2, (3, 3), input_shape=(9, 9, 1)))
-*model.add(Dropout(dropout_rate))
-model.add(Conv2D(4, (3, 3)))
-*model.add(Dropout(dropout_rate))
-...
-```
-
-- regularization technique extremely effective
-- .green[prevents overfitting]
-
-**Note:** dropout is .red[not used during evaluation], which accounts for a small gap between **`loss`** and **`val_loss`** during training.
-
-
-.footnote[[Srivastava et al. (2014)](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)]
-
----
-
-## Batch normalization
-
-```python
-...
-from keras.layers import BatchNormalization
-from keras.layers import Activation
-
-model = Sequential()
-model.add(Conv2D(..., activation=None))
-*model.add(BatchNormalization())
-model.add(Activation('relu'))
-```
-
-- technique that .green[adds robustness against bad initialization]
-- forces activations layers to take on a unit gaussian distribution at the beginning of the training
-- must be used .red[before] non-linearities
-
-.footnote[[Ioffe & Szegedy (2015)](http://arxiv.org/abs/1502.03167)]
----
-## what we did not talk about
-
-- data normalization
-- weight initialization
-- learning rate decay
-- gradient clipping
-- regularization
-
----
-class: center, middle
 name: practice
 
 # In practice
@@ -994,99 +921,182 @@ count: false
 - play with the examples and adjust to your inputs/outputs
 
 --
+- use [pretrained nets][kerasapp] for the  pre-processing of your data
+
+--
 - start tuning the model parameters..
 
 [gh]: https://github.com/
-
----
-## Use pre-trained nets
+[kerasapp]: https://keras.io/applications/
 
 ---
 ## Plot the training loss
 
-Retrieve the information from the model history
-
-.left-column[
 ```python
 import matplotlib.pyplot as plt
 
-# ...
-*history = model.fit(
-    X_train, y_train,
-    validation_data=(X_val, y_val))
+history = model.fit(X_train, y_train, validation_split=0.3)  
 
 # Visualizing the training                    
-plt.plot(history.history['loss'],
-         label='train')
-plt.plot(history.history['val_loss'],
-         label='validation')
-plt.legend()
-plt.xlabel('epochs')
-plt.ylabel('loss')
-
-
+plt.plot(history.history['loss'], label='training')
+plt.plot(history.history['val_loss'], label='validation')
+plt.xlabel('epochs'); plt.ylabel('loss'); plt.legend()
 ```
-]
-.right-column[ 
-<img src="img/loss.png" />
-]
+
+.center[<img src="img/loss.png" width="500px">]
 
 ---
-## Plot the training accuracy
 
-.left-column[
+## Plot the training loss
+
+And look for the training .green[sweet spot] (before .red[overfitting]).
+
+.center[<img src="img/overfitting.png" width="550px">]
+
+---
+## Plot other metrics
+
 ```python
 import matplotlib.pyplot as plt
 
-# ...
-*model.compile(..., metrics=['acc'])
+model.compile(..., metrics=['acc'])  # computes other metrics, here accuracy
 
-history = model.fit(
-    X_train, y_train,
-    validation_data=(X_val, y_val))
+history = model.fit(X_train, y_train, validation_split=0.3)
 
 # Visualizing the training                    
-plt.plot(history.history['acc'],
-         label='train')
-plt.plot(history.history['val_acc'],
-         label='validation')
-plt.legend()
-plt.xlabel('epochs')
-plt.ylabel('accuracy')
+plt.plot(history.history['acc'], label='training')
+plt.plot(history.history['val_acc'], label='validation')
+plt.xlabel('epochs'); plt.ylabel('accuracy'); plt.legend()
 ```
-] .right-column[
-<img src="img/accuracy.png"> ]
 
-
----
-class: middle, center
-
-# Next ?
+.center[<img src="img/accuracy.png" width="450px">]
 
 ---
-class: middle, center
-# ML developments are happening at a high pace
-#.red[stay tuned] !
+## Tensorboard
+
+.center[<img src="img/tensorboard_edward.png" width="770px">]
+
+.footnote[credit: [Edward Tensorboard tuto](http://edwardlib.org/tutorials/tensorboard)]
+
+---
+class: center, middle
+name: optim
+# Common optimizations
+
+.medium["avoiding overfitting"]
+
+---
+## Data is key
+
+Deep neural nets need .red[a lot of data] to achieve good performance.
+
+.center[<img src="img/dl_perf.jpg", width="600px"/>]
+
+---
+count: false
+## Data is key
+
+Deep neural nets need .red[a lot of data] to achieve good performance.
+
+Use .red[data augmentation].
+
+.center[<img src="img/data_augment.png", width="600px"/>]
+
+---
+count: false
+## Data is key
+
+Deep neural nets need .red[a lot of data] to achieve good performance.
+
+Use .red[data augmentation].
+
+Choose a training set .red[representative] of your data.
+
+
+--
+If you cannot get enough labeled data, use simulations or turn to [transfer learning](https://arxiv.org/abs/1411.1792) techniques.
+
+---
+## Dropout
+
+A % of random neurons are .green[switched off] during training  
+it mimics different architectures being trained at each step 
+
+.center[<img src="img/dropout.png" width="500 px" />]
+.footnote[[Srivastava et al. (2014)](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)]
+
+---
+## Dropout
+
+```python
+...
+from keras.layers import Dropout
+
+dropout_rate = 0.25
+
+model = Sequential()
+model.add(Conv2D(2, (3, 3), input_shape=(9, 9, 1)))
+*model.add(Dropout(dropout_rate))
+model.add(Conv2D(4, (3, 3)))
+*model.add(Dropout(dropout_rate))
+...
+```
+
+- regularization technique extremely effective
+- .green[prevents overfitting]
+
+**Note:** dropout is .red[not used during evaluation], which accounts for a small gap between **`loss`** and **`val_loss`** during training.
+
+
+.footnote[[Srivastava et al. (2014)](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)]
+
+---
+## Batch normalization
+
+```python
+...
+from keras.layers import BatchNormalization
+from keras.layers import Activation
+
+model = Sequential()
+model.add(Conv2D(..., activation=None))
+*model.add(BatchNormalization())
+model.add(Activation('relu'))
+```
+
+- technique that .green[adds robustness against bad initialization]
+- forces activations layers to take on a unit gaussian distribution at the beginning of the training
+- must be used .red[before] non-linearities
+
+.footnote[[Ioffe & Szegedy (2015)](http://arxiv.org/abs/1502.03167)]
+
+---
+## other tricks
+
+Here are some leads (random order) to explore if your model do not converge:
+- data normalization
+- weight initialization
+- learning rate decay
+- gradient clipping
+- regularization
 
 ---
 class: center
+.hidden[a]
+# Next ?
+
+### ML developments are happening at a high pace <br/>.red[stay tuned] !
+
+.hidden[a]
 # References
 
+.middle[### A curated list of inspirations for this presentation can be found [here][refs].]
 
+[refs]: https://github.com/ADAIX/Machine-Learning-Tutorial/blob/master/references/DeepLearning.md
 
-https://distill.pub/2018/building-blocks/
-
-https://distill.pub/2017/momentum/
-[SGD](http://fa.bianp.net/teaching/2018/eecs227at/stochastic_gradient.html)
-
-.big[DL in action]<br/>
-
-[Keras examples](https://github.com/keras-team/keras/tree/master/examples)
-
-[TensorFlow examples](https://github.com/aymericdamien/TensorFlow-Examples/)
 ---
 class: center, middle
 
 <img src="img/friendship_algorithm.PNG" />
 
-.medium[But keep in mind that .red[not everything] is differentiable..]
+.medium[but keep in mind that .red[not everything] is differentiable..]
