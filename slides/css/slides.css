@@ -91,6 +91,14 @@ a:visited {
   /*border: 2px solid #ddd;*/
 }
 
+.circle-image{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    /* display:block; */
+    /* background-position-y:25%  */
+}
+
 code {
   border-radius: 10px;
 }
